@@ -16,32 +16,31 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <DockPanel 
+        <StackPanel Orientation="Vertical" 
             Grid.ColumnSpan="2"
             >
 
             <Button 
                 Content="Загрузить изображение"
+                Command="{Binding Path=LoadInputImageCommand}"
                 />
 
             <Button 
-                Content="Сохранить изображение"
+                Content="Сохранить полученное изображение изображение"
                 DockPanel.Dock="Right"
                 />
-
-            <Button 
-                Content="В черно-белое"
-                />
-        </DockPanel>
+        </StackPanel>
 
         <Image 
             Grid.Row="1"
             Grid.Column="0"
+            Source="{Binding Path=InputImageSource}"
             />
 
         <Image 
             Grid.Row="1"
             Grid.Column="1"
+            Source="{Binding Path=OutputImageBitmap}"
             />
     </Grid>
 </Window>
