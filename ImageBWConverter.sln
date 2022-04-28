@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageBWConverter", "ImageBWConverter\ImageBWConverter.csproj", "{A7E98D54-C13A-4BC1-8046-52AEDD18F62C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A7E98D54-C13A-4BC1-8046-52AEDD18F62C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7E98D54-C13A-4BC1-8046-52AEDD18F62C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7E98D54-C13A-4BC1-8046-52AEDD18F62C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7E98D54-C13A-4BC1-8046-52AEDD18F62C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0B8D3B79-0F0F-416F-BDB5-AEC0C1E78012}
+	EndGlobalSection
+EndGlobal
