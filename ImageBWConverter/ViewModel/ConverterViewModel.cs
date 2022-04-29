@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
@@ -28,21 +29,37 @@ namespace ImageBWConverter.ViewModel
 
 
         public LoadImageCommand LoadInputImageCommand { get; private set; }
-        private void LoadImage()
+        private async void LoadImage()
         {
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
-                PathInputImage = openFileDialog.FileName;
+                try
+                {
+                    double fileSize = Convert.ToDouble(new System.IO.FileInfo(openFileDialog.FileName).Length/1024/1024);
+                    if (fileSize >= 50)
+                    {
+                        PathInputImage = openFileDialog.FileName;
 
-                inputImageBitmap = LoadInputImage();
-                PropertyChanged(this, new PropertyChangedEventArgs("InputImageBitmap"));
+                        inputImageBitmap = LoadInputImage();
+                        PropertyChanged(this, new PropertyChangedEventArgs("InputImageBitmap"));
 
-                inputImageSource = BitmapToBitmapImage(inputImageBitmap);
-                PropertyChanged(this, new PropertyChangedEventArgs("InputImageSource"));
+                        inputImageSource = BitmapToBitmapImage(inputImageBitmap);
+                        PropertyChanged(this, new PropertyChangedEventArgs("InputImageSource"));
 
-                outputImageBitmap = ConvertToBW();
-                PropertyChanged(this, new PropertyChangedEventArgs("OutputImageBitmap"));
+                        outputImageBitmap = ConvertToBW();
+                        PropertyChanged(this, new PropertyChangedEventArgs("OutputImageBitmap"));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Размер файла меньше 50 МБ", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Ошибка загрузки файла", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
             }
             else
             {
@@ -130,6 +147,8 @@ namespace ImageBWConverter.ViewModel
             
         }
         #endregion
+
+
 
         private BitmapImage BitmapToBitmapImage(Bitmap bmp)
         {
