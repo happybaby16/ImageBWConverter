@@ -31,7 +31,7 @@ namespace ImageBWConverter.ViewModel
         public LoadImageCommand LoadInputImageCommand { get; private set; }
         private async void LoadImage()
         {
-            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog() { Filter = "PNG file (.png)|*.png" };
             if (openFileDialog.ShowDialog() == true)
             {
                 try
@@ -129,11 +129,10 @@ namespace ImageBWConverter.ViewModel
         public SaveImageCommand SaveCommand { get; private set; }
         private void SaveImage()
         {
-            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            dlg.FileName = "Image";
-            dlg.DefaultExt = ".png";
-            dlg.Filter = "PNG file (.png)|*.png";
-
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog() { FileName="Image", 
+                                                                                        DefaultExt=".png", 
+                                                                                        Filter = "PNG file (.png)|*.png" };
+            
             if (dlg.ShowDialog() == true)
             {
                 PngBitmapEncoder encoder = new PngBitmapEncoder();
