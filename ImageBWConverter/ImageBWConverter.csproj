@@ -57,6 +57,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModel\Commands\LoadImageCommand.cs" />
+    <Compile Include="ViewModel\Commands\SaveImageCommand.cs" />
     <Compile Include="ViewModel\ConverterViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

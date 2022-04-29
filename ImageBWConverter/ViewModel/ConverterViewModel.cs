@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
@@ -74,7 +75,6 @@ namespace ImageBWConverter.ViewModel
         }
         #endregion
 
-
         #region Конвертация загруженной картинки
         BitmapImage outputImageBitmap = null;
         public BitmapImage OutputImageBitmap
@@ -108,6 +108,29 @@ namespace ImageBWConverter.ViewModel
         }
         #endregion
 
+        #region Сохранение полученной картинки
+        public SaveImageCommand SaveCommand { get; private set; }
+        private void SaveImage()
+        {
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "Image";
+            dlg.DefaultExt = ".png";
+            dlg.Filter = "PNG file (.png)|*.png";
+
+            if (dlg.ShowDialog() == true)
+            {
+                PngBitmapEncoder encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(OutputImageBitmap));
+                using (var stream = new FileStream(dlg.FileName, FileMode.Create))
+                {
+                    encoder.Save(stream);
+                }
+            }
+
+            
+        }
+        #endregion
+
         private BitmapImage BitmapToBitmapImage(Bitmap bmp)
         {
             if (bmp != null)
@@ -134,6 +157,7 @@ namespace ImageBWConverter.ViewModel
         public ConverterViewModel()
         {
             LoadInputImageCommand = new LoadImageCommand(LoadImage);
+            SaveCommand = new SaveImageCommand(SaveImage);
         }
     }
 }

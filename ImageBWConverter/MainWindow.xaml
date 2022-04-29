@@ -27,19 +27,21 @@
 
             <Button 
                 Content="Сохранить полученное изображение изображение"
-                DockPanel.Dock="Right"
+                Command="{Binding Path=SaveCommand}"
                 />
         </StackPanel>
 
         <Image 
             Grid.Row="1"
             Grid.Column="0"
+            Margin="5,10"
             Source="{Binding Path=InputImageSource}"
             />
 
         <Image 
             Grid.Row="1"
             Grid.Column="1"
+            Margin="5,10"
             Source="{Binding Path=OutputImageBitmap}"
             />
     </Grid>
